@@ -1,0 +1,88 @@
+﻿using DBST.Hospital.DataAccess;
+using DBST.Hospital.Scheme;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Dynamic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DBST.Hospital.BusinessLogic
+{
+    public static class Utilities
+    {
+        public static List<dynamic> ToDynamic(this DataTable poData)
+        {
+            List<object> list = new List<object>();
+            foreach(DataRow dr in poData.Rows)
+            {
+                dynamic val = new ExpandoObject();
+                list.Add(val);
+                foreach(DataColumn column in poData.Columns)
+                {
+                    ((IDictionary<string, object>)val)[column.ColumnName] = dr[column];
+                }
+            }
+
+            return list;
+        }
+
+        public static ResponseScheme GenerateResponse(bool pbIsList, DataTable poDataTable)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            if (!pbIsList)
+            {
+                oResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.OK,
+                    Message = "Datos obtenidos correctamente",
+                    Data = Utilities.ToDynamic(poDataTable).FirstOrDefault()
+                };
+            }
+            else
+            {
+                oResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.OK,
+                    Message = "Datos obtenidos correctamente",
+                    Data = Utilities.ToDynamic(poDataTable).ToList()
+                };
+
+            }
+
+            return oResponse;
+        }
+
+        public static ResponseScheme GenerateResponseWithNoData(DataTable poDataTable)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            dynamic data = Utilities.ToDynamic(poDataTable).FirstOrDefault();
+
+            oResponse = new ResponseScheme()
+            {
+                StatusCode = (HttpStatusCode)data.StatusCode,
+                Message = data.Message
+            };
+
+            return oResponse;
+        }
+
+        public static ResponseScheme CreateException(Exception poEx)
+        {
+            ResponseScheme oResponse = new ResponseScheme()
+            {
+                StatusCode = System.Net.HttpStatusCode.BadRequest,
+                Message = poEx.Message
+            };
+
+            return oResponse;
+        }
+
+       
+    }
+}
