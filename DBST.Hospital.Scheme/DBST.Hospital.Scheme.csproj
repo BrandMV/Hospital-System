@@ -7,7 +7,7 @@
     <ProjectGuid>{DBDB70E8-C90C-4CCB-9775-270E22BCB1D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DBST.Hospital.Schemea</RootNamespace>
+    <RootNamespace>DBST.Hospital.Scheme</RootNamespace>
     <AssemblyName>DBST.Hospital.Scheme</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppointmentScheme.cs" />
     <Compile Include="DoctorScheme.cs" />
     <Compile Include="MedicineScheme.cs" />
     <Compile Include="MedicineUpdateScheme.cs" />
     <Compile Include="PatientScheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseScheme.cs" />
+    <Compile Include="UpdateAppointmentScheme.cs" />
     <Compile Include="UpdatePatientScheme.cs" />
     <Compile Include="WorkerScheme.cs" />
   </ItemGroup>
