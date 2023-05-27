@@ -17,7 +17,9 @@ namespace DBST.Hospital.DataAccess
             DataTable oDataTable = new DataTable();
             try
             {
-                oDataTable = ExecuteStoreProcedure("spGetAllPatients", null);
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+
+                oDataTable = ExecuteStoreProcedure("spGetAllPatients", loParameters);
 
                 return oDataTable;
             }
@@ -35,13 +37,15 @@ namespace DBST.Hospital.DataAccess
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
                 loParameters.Add(new SqlParameter("@Nombre", poPatient.Nombre));
+                loParameters.Add(new SqlParameter("@Paterno", poPatient.Paterno));
+                loParameters.Add(new SqlParameter("@Materno", poPatient.Materno));
                 loParameters.Add(new SqlParameter("@FechaNacimiento", poPatient.FechaNacimiento));
                 loParameters.Add(new SqlParameter("@Email", poPatient.Email));
                 loParameters.Add(new SqlParameter("@Contrasena", poPatient.Contrasena));
                 loParameters.Add(new SqlParameter("@Telefono", poPatient.Telefono));
                 loParameters.Add(new SqlParameter("@Estado", poPatient.Estado));
                 loParameters.Add(new SqlParameter("@Colonia", poPatient.Colonia));
-                loParameters.Add(new SqlParameter("@Alcaldia", poPatient.Alcaldia));
+                loParameters.Add(new SqlParameter("@Municipio", poPatient.Municipio));
                 loParameters.Add(new SqlParameter("@Calle", poPatient.Calle));
                 loParameters.Add(new SqlParameter("@NoExterior", poPatient.NoExterior));
                 loParameters.Add(new SqlParameter("@NoInterior", poPatient.NoInterior));
@@ -65,14 +69,17 @@ namespace DBST.Hospital.DataAccess
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
                 loParameters.Add(new SqlParameter("@Id", poPatient.Id));
+                loParameters.Add(new SqlParameter("@IdDireccion", poPatient.IdDireccion));
                 loParameters.Add(new SqlParameter("@Nombre", poPatient.Nombre));
+                loParameters.Add(new SqlParameter("@Paterno", poPatient.Paterno));
+                loParameters.Add(new SqlParameter("@Materno", poPatient.Materno));
                 loParameters.Add(new SqlParameter("@FechaNacimiento", poPatient.FechaNacimiento));
                 loParameters.Add(new SqlParameter("@Email", poPatient.Email));
                 loParameters.Add(new SqlParameter("@Contrasena", poPatient.Contrasena));
                 loParameters.Add(new SqlParameter("@Telefono", poPatient.Telefono));
                 loParameters.Add(new SqlParameter("@Estado", poPatient.Estado));
                 loParameters.Add(new SqlParameter("@Colonia", poPatient.Colonia));
-                loParameters.Add(new SqlParameter("@Alcaldia", poPatient.Alcaldia));
+                loParameters.Add(new SqlParameter("@Municipio", poPatient.Municipio));
                 loParameters.Add(new SqlParameter("@Calle", poPatient.Calle));
                 loParameters.Add(new SqlParameter("@NoExterior", poPatient.NoExterior));
                 loParameters.Add(new SqlParameter("@NoInterior", poPatient.NoInterior));

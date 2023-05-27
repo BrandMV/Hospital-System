@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AppointmentScheme.cs" />
     <Compile Include="DoctorScheme.cs" />
+    <Compile Include="DoctorUpdateScheme.cs" />
     <Compile Include="MedicineScheme.cs" />
     <Compile Include="MedicineUpdateScheme.cs" />
     <Compile Include="PatientScheme.cs" />

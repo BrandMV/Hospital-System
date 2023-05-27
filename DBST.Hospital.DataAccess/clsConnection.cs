@@ -14,8 +14,8 @@ namespace DBST.Hospital.DataAccess
         public static string GetConnectionString()
         {
             SqlConnectionStringBuilder lsConnectionString = new SqlConnectionStringBuilder();
-            lsConnectionString.DataSource = ".";
-            lsConnectionString.InitialCatalog = "hospital";
+            lsConnectionString.DataSource = @".\SQLExpress";
+            lsConnectionString.InitialCatalog = "Hospital";
             lsConnectionString.IntegratedSecurity = true;
 
             return lsConnectionString.ConnectionString;
@@ -25,6 +25,7 @@ namespace DBST.Hospital.DataAccess
             DataTable oDataTable = new DataTable();
             try
             {
+                //using(SqlConnection conn = new SqlConnection("data source=.;initial catalog=Hospital;integrated security=true;"))
                 using(SqlConnection conn = new SqlConnection(GetConnectionString()))
                 {
                     conn.Open();

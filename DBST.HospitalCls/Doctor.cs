@@ -42,7 +42,7 @@ namespace DBST.HospitalCls
             }
         }
 
-        public static Task<ResponseScheme> UpdateDoctor(DoctorScheme poScheme)
+        public static Task<ResponseScheme> UpdateDoctor(DoctorUpdateScheme poScheme)
         {
             try
             {

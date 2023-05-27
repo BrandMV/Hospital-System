@@ -56,7 +56,7 @@ namespace DBST.Hospital.Controllers
 
         [HttpPost]
         [Route("api/Doctor/UpdateDoctor")]
-        public async Task<ResponseScheme> UpdateDoctor(DoctorScheme poScheme)
+        public async Task<ResponseScheme> UpdateDoctor(DoctorUpdateScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try

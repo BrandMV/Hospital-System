@@ -52,7 +52,7 @@ namespace DBST.Hospital.BussinessLogic
             return oResponse;
         }
 
-        public ResponseScheme UpdateDoctor(DoctorScheme poScheme)
+        public ResponseScheme UpdateDoctor(DoctorUpdateScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try

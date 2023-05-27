@@ -9,8 +9,5 @@
         public double Precio { get; set; }
         public string Precauciones { get; set; }
 
-        public int Stock { get; set; }
-
-
     }
 }

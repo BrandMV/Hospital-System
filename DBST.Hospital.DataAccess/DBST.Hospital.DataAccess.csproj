@@ -46,6 +46,7 @@
     <Compile Include="clsDoctor.cs" />
     <Compile Include="clsMedicine.cs" />
     <Compile Include="clsPatient.cs" />
+    <Compile Include="clsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

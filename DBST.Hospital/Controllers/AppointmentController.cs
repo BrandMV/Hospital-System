@@ -91,5 +91,25 @@ namespace DBST.Hospital.Controllers
             }
             return loResponse;
         }
+
+        [HttpGet]
+        [Route("api/Appointment/GetAppointmentsByPatient")]
+        public async Task<ResponseScheme> GetAppointmentsByPatient(int piId)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Appointment.GetAppointmentsByPatient(piId);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
     }
 }

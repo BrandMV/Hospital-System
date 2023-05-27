@@ -17,10 +17,28 @@ namespace DBST.Hospital.DataAccess
             DataTable dt = new DataTable();
             try
             {
-                dt = ExecuteStoreProcedure("spGetAppointments", null);
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+
+                dt = ExecuteStoreProcedure("spGetAppointments", loParameters);
                 return dt;
             }
             catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public DataTable GetAppointmentsByPatient(int piId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                List<SqlParameter> loParams = new List<SqlParameter>();
+
+                loParams.Add(new SqlParameter("@IdPatient", piId));
+                dt = ExecuteStoreProcedure("spGetAppointmentsByPatient", loParams);
+                return dt;
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

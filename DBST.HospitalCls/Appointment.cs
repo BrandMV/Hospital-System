@@ -68,6 +68,21 @@ namespace DBST.HospitalCls
             }
         }
 
+        public static Task<ResponseScheme> GetAppointmentsByPatient(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsAppointment>.Instance.GetAppointmentsByPatient(piId);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
     }
 }

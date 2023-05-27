@@ -18,7 +18,9 @@ namespace DBST.Hospital.DataAccess
             DataTable oDataTable = new DataTable();
             try
             {
-                oDataTable = ExecuteStoreProcedure("spGetAllDoctors", null);
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+
+                oDataTable = ExecuteStoreProcedure("spGetAllDoctors", loParameters);
 
                 return oDataTable;
             }
@@ -38,21 +40,22 @@ namespace DBST.Hospital.DataAccess
                 loParameters.Add(new SqlParameter("@RFC", poDoctor.RFC));
                 loParameters.Add(new SqlParameter("@Nombre", poDoctor.Nombre));
                 loParameters.Add(new SqlParameter("@SegundoNombre", poDoctor.SegundoNombre));
-                loParameters.Add(new SqlParameter("@ApellidoPaterno", poDoctor.ApellidoPaterno));
-                loParameters.Add(new SqlParameter("@ApellidoMaterno", poDoctor.ApellidoMaterno));
+                loParameters.Add(new SqlParameter("@Paterno", poDoctor.ApellidoPaterno));
+                loParameters.Add(new SqlParameter("@Materno", poDoctor.ApellidoMaterno));
                 loParameters.Add(new SqlParameter("@Salario", poDoctor.Salario));
                 loParameters.Add(new SqlParameter("@Telefono", poDoctor.Telefono));
-                loParameters.Add(new SqlParameter("@IdDireccion", poDoctor.IdDireccion));
-                loParameters.Add(new SqlParameter("@NombreUsuario", poDoctor.NombreUsuario));
+                loParameters.Add(new SqlParameter("@Email", poDoctor.Email));
                 loParameters.Add(new SqlParameter("@Contrasena", poDoctor.Contrasena));
+                loParameters.Add(new SqlParameter("@FechaNacimiento", poDoctor.FechaNacimiento));
                 loParameters.Add(new SqlParameter("@Estado", poDoctor.Estado));
                 loParameters.Add(new SqlParameter("@Colonia", poDoctor.Colonia));
-                loParameters.Add(new SqlParameter("@Alcaldia", poDoctor.Alcaldia));
+                loParameters.Add(new SqlParameter("@Municipio", poDoctor.Municipio));
                 loParameters.Add(new SqlParameter("@Calle", poDoctor.Calle));
                 loParameters.Add(new SqlParameter("@NoExterior", poDoctor.NoExterior));
                 loParameters.Add(new SqlParameter("@NoInterior", poDoctor.NoInterior));
                 loParameters.Add(new SqlParameter("@Cp", poDoctor.Cp));
                 loParameters.Add(new SqlParameter("@IdConsultorio", poDoctor.IdConsultorio));
+                loParameters.Add(new SqlParameter("@Cedula", poDoctor.CedulaProfesional));
 
                 oDataTable = ExecuteStoreProcedure("spAddDoctor", loParameters);
 
@@ -64,33 +67,37 @@ namespace DBST.Hospital.DataAccess
             }
         }
 
-        public DataTable UpdateDoctor(DoctorScheme poDoctor)
+        public DataTable UpdateDoctor(DoctorUpdateScheme poDoctor)
         {
             DataTable oDataTable = new DataTable();
             try
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
+                loParameters.Add(new SqlParameter("@Id", poDoctor.Id));
                 loParameters.Add(new SqlParameter("@RFC", poDoctor.RFC));
                 loParameters.Add(new SqlParameter("@Nombre", poDoctor.Nombre));
                 loParameters.Add(new SqlParameter("@SegundoNombre", poDoctor.SegundoNombre));
-                loParameters.Add(new SqlParameter("@ApellidoPaterno", poDoctor.ApellidoPaterno));
-                loParameters.Add(new SqlParameter("@ApellidoMaterno", poDoctor.ApellidoMaterno));
+                loParameters.Add(new SqlParameter("@Paterno", poDoctor.ApellidoPaterno));
+                loParameters.Add(new SqlParameter("@Materno", poDoctor.ApellidoMaterno));
                 loParameters.Add(new SqlParameter("@Salario", poDoctor.Salario));
                 loParameters.Add(new SqlParameter("@Telefono", poDoctor.Telefono));
                 loParameters.Add(new SqlParameter("@IdDireccion", poDoctor.IdDireccion));
-                loParameters.Add(new SqlParameter("@NombreUsuario", poDoctor.NombreUsuario));
+                loParameters.Add(new SqlParameter("@Email", poDoctor.Email));
                 loParameters.Add(new SqlParameter("@Contrasena", poDoctor.Contrasena));
+                loParameters.Add(new SqlParameter("@FechaNacimiento", poDoctor.FechaNacimiento));
                 loParameters.Add(new SqlParameter("@Estado", poDoctor.Estado));
                 loParameters.Add(new SqlParameter("@Colonia", poDoctor.Colonia));
-                loParameters.Add(new SqlParameter("@Alcaldia", poDoctor.Alcaldia));
+                loParameters.Add(new SqlParameter("@Municipio", poDoctor.Municipio));
                 loParameters.Add(new SqlParameter("@Calle", poDoctor.Calle));
                 loParameters.Add(new SqlParameter("@NoExterior", poDoctor.NoExterior));
                 loParameters.Add(new SqlParameter("@NoInterior", poDoctor.NoInterior));
                 loParameters.Add(new SqlParameter("@Cp", poDoctor.Cp));
                 loParameters.Add(new SqlParameter("@IdConsultorio", poDoctor.IdConsultorio));
+                loParameters.Add(new SqlParameter("@Cedula", poDoctor.CedulaProfesional));
 
-                oDataTable = ExecuteStoreProcedure("UpdateDoctor", loParameters);
+
+                oDataTable = ExecuteStoreProcedure("spUpdateDoctor", loParameters);
 
                 return oDataTable;
             }

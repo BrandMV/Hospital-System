@@ -13,7 +13,9 @@ namespace DBST.Hospital.DataAccess
             DataTable oDataTable = new DataTable();
             try
             {
-                oDataTable = ExecuteStoreProcedure("spGetMedicines", null);
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+
+                oDataTable = ExecuteStoreProcedure("spGetMedicines", loParameters);
 
                 return oDataTable;
             }
@@ -41,11 +43,10 @@ namespace DBST.Hospital.DataAccess
 
                 loParameters.Add(new SqlParameter("@IdFabricante", poMedicine.IdFabricante));
                 loParameters.Add(new SqlParameter("@NombreComun", poMedicine.NombreComun));
-                loParameters.Add(new SqlParameter("@Decificacion", poMedicine.DocificacionRecomendada));
+                loParameters.Add(new SqlParameter("@Docificacion", poMedicine.DocificacionRecomendada));
                 loParameters.Add(new SqlParameter("@Formula", poMedicine.Formula));
                 loParameters.Add(new SqlParameter("@Precio", poMedicine.Precio));
-                loParameters.Add(new SqlParameter("@Precausiones", poMedicine.Precauciones));
-                loParameters.Add(new SqlParameter("@Stock", poMedicine.Stock));
+                loParameters.Add(new SqlParameter("@Precauciones", poMedicine.Precauciones));
 
                 oDataTable = ExecuteStoreProcedure("spAddMedicine", loParameters);
 
@@ -84,15 +85,15 @@ namespace DBST.Hospital.DataAccess
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
+                loParameters.Add(new SqlParameter("@IdMedicina", poMedicine.Id));
                 loParameters.Add(new SqlParameter("@IdFabricante", poMedicine.IdFabricante));
                 loParameters.Add(new SqlParameter("@NombreComun", poMedicine.NombreComun));
-                loParameters.Add(new SqlParameter("@Decificacion", poMedicine.DocificacionRecomendada));
+                loParameters.Add(new SqlParameter("@Docificacion", poMedicine.DocificacionRecomendada));
                 loParameters.Add(new SqlParameter("@Formula", poMedicine.Formula));
                 loParameters.Add(new SqlParameter("@Precio", poMedicine.Precio));
-                loParameters.Add(new SqlParameter("@Precausiones", poMedicine.Precauciones));
-                loParameters.Add(new SqlParameter("@Stock", poMedicine.Stock));
+                loParameters.Add(new SqlParameter("@Precauciones", poMedicine.Precauciones));
 
-                oDataTable = ExecuteStoreProcedure("spAddMedicine", loParameters);
+                oDataTable = ExecuteStoreProcedure("spUpdateMedicine", loParameters);
                 
                 return oDataTable;
             }

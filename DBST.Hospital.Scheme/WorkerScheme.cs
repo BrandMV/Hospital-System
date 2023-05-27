@@ -15,14 +15,14 @@ namespace DBST.Hospital.Scheme
         public string ApellidoMaterno { get; set; }
         public double Salario { get; set; }
         public string Telefono { get; set; }
-        public int IdDireccion { get; set; }
-        public string NombreUsuario { get; set; }
-        public string Contrasena { get;set; }
+        public DateTime FechaNacimiento{ get; set; }
+        //public int IdDireccion { get; set; }
+        public string Email { get; set; }
 
         #region Direccion
         public string Estado { get; set; }
         public string Colonia { get; set; }
-        public string Alcaldia { get; set; }
+        public string Municipio { get; set; }
         public string Calle { get; set; }
         public int NoExterior { get; set; }
         public int NoInterior { get; set; }
