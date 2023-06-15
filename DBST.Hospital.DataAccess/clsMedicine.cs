@@ -41,12 +41,12 @@ namespace DBST.Hospital.DataAccess
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
-                loParameters.Add(new SqlParameter("@IdFabricante", poMedicine.IdFabricante));
-                loParameters.Add(new SqlParameter("@NombreComun", poMedicine.NombreComun));
-                loParameters.Add(new SqlParameter("@Docificacion", poMedicine.DocificacionRecomendada));
-                loParameters.Add(new SqlParameter("@Formula", poMedicine.Formula));
-                loParameters.Add(new SqlParameter("@Precio", poMedicine.Precio));
-                loParameters.Add(new SqlParameter("@Precauciones", poMedicine.Precauciones));
+                loParameters.Add(new SqlParameter("@IdFabricante", poMedicine.idFabricante));
+                loParameters.Add(new SqlParameter("@NombreComun", poMedicine.nombreComun));
+                loParameters.Add(new SqlParameter("@Docificacion", poMedicine.dosificacionRecomendada));
+                loParameters.Add(new SqlParameter("@Formula", poMedicine.formaFarmaceutica));
+                loParameters.Add(new SqlParameter("@Precio", poMedicine.precio));
+                loParameters.Add(new SqlParameter("@Precauciones", poMedicine.precauciones));
 
                 oDataTable = ExecuteStoreProcedure("spAddMedicine", loParameters);
 
@@ -78,6 +78,25 @@ namespace DBST.Hospital.DataAccess
             }
         }
 
+        public DataTable GetMedicineById(int piId)
+        {
+            DataTable oDataTable = new DataTable();
+            try
+            {
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+                loParameters.Add(new SqlParameter("@Id", piId));
+
+
+                oDataTable = ExecuteStoreProcedure("spGetMedicineById", loParameters);
+
+                return oDataTable;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public DataTable UpdateMedicine(MedicineUpdateScheme poMedicine)
         {
             DataTable oDataTable = new DataTable();
@@ -85,13 +104,13 @@ namespace DBST.Hospital.DataAccess
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
-                loParameters.Add(new SqlParameter("@IdMedicina", poMedicine.Id));
-                loParameters.Add(new SqlParameter("@IdFabricante", poMedicine.IdFabricante));
-                loParameters.Add(new SqlParameter("@NombreComun", poMedicine.NombreComun));
-                loParameters.Add(new SqlParameter("@Docificacion", poMedicine.DocificacionRecomendada));
-                loParameters.Add(new SqlParameter("@Formula", poMedicine.Formula));
-                loParameters.Add(new SqlParameter("@Precio", poMedicine.Precio));
-                loParameters.Add(new SqlParameter("@Precauciones", poMedicine.Precauciones));
+                loParameters.Add(new SqlParameter("@IdMedicina", poMedicine.id));
+                loParameters.Add(new SqlParameter("@IdFabricante", poMedicine.idFabricante));
+                loParameters.Add(new SqlParameter("@NombreComun", poMedicine.nombreComun));
+                loParameters.Add(new SqlParameter("@Docificacion", poMedicine.dosificacionRecomendada));
+                loParameters.Add(new SqlParameter("@Formula", poMedicine.formaFarmaceutica));
+                loParameters.Add(new SqlParameter("@Precio", poMedicine.precio));
+                loParameters.Add(new SqlParameter("@Precauciones", poMedicine.precauciones));
 
                 oDataTable = ExecuteStoreProcedure("spUpdateMedicine", loParameters);
                 

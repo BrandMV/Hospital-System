@@ -72,6 +72,28 @@ namespace DBST.Hospital.BusinessLogic
             return oResponse;
         }
 
+        public ResponseScheme GetMedicineById(int piId)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+                DBST.Hospital.DataAccess.clsMedicine clsMedicine = new DataAccess.clsMedicine();
+                DataTable oDataTable = clsMedicine.GetMedicineById(piId);
+
+                if (oDataTable.Rows.Count > 0)
+                {
+                    oResponse = Utilities.GenerateResponse(true, oDataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+
         public ResponseScheme UpdateMedicine(MedicineUpdateScheme poMedicine)
         {
             ResponseScheme oResponse = new ResponseScheme();

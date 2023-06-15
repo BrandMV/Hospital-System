@@ -25,6 +25,22 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
+
+        public static Task<ResponseScheme> GetPatientById(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsPatient>.Instance.GetPatientById(piId);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public static Task<ResponseScheme> AddPatient(PatientScheme poScheme)
         {
             try

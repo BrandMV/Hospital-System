@@ -25,5 +25,21 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
+
+        public static Task<ResponseScheme> GetProviderById(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsProvider>.Instance.GetProviderById(piId);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

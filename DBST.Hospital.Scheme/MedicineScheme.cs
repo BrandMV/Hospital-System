@@ -2,12 +2,12 @@
 {
     public class MedicineScheme
     {
-        public int IdFabricante { get; set; }
-        public string NombreComun { get; set; }
-        public string DocificacionRecomendada { get; set; }
-        public string Formula { get; set; }
-        public double Precio { get; set; }
-        public string Precauciones { get; set; }
+        public int idFabricante { get; set; }
+        public string nombreComun { get; set; }
+        public string dosificacionRecomendada { get; set; }
+        public string formaFarmaceutica { get; set; }
+        public double precio { get; set; }
+        public string precauciones { get; set; }
 
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DBST.Hospital.Scheme
 {
-    public class MedicineUpdateScheme : MedicineScheme
+    public class SpecialityDoctorScheme
     {
-        public int id { get; set; }
+        public int idEspecialidad { get; set; }
+        public int idMedico { get; set; }
     }
 }

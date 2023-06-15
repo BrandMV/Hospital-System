@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DBST.Hospital.Scheme
 {
-    public class MedicineUpdateScheme : MedicineScheme
+    public class LoginScheme
     {
-        public int id { get; set; }
+        public string LoginCred { get; set; }
+        public string Password { get; set; }
     }
 }

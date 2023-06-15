@@ -34,6 +34,28 @@ namespace DBST.Hospital.BussinessLogic
             return oResponse;
         }
 
+        public ResponseScheme GetPatientById(int piId)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+                DBST.Hospital.DataAccess.clsPatient clsPatient = new DataAccess.clsPatient();
+                DataTable oDataTable = clsPatient.GetPatientById(piId);
+
+                if (oDataTable.Rows.Count > 0)
+                {
+                    oResponse = Utilities.GenerateResponse(true, oDataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+
         public ResponseScheme AddPatient(PatientScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();

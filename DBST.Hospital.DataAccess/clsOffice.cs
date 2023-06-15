@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace DBST.Hospital.DataAccess
 {
-    public class clsProvider
+    public class clsOffice
     {
-        public DataTable GetProviders()
+        public DataTable GetAllConsultingRooms()
         {
-            DataTable dt = new DataTable();
+            DataTable oDataTable = new DataTable();
             try
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
-                dt = ExecuteStoreProcedure("spGetProviders", loParameters);
-                return dt;
+                oDataTable = ExecuteStoreProcedure("spGetAllConsultingRooms", loParameters);
+
+                return oDataTable;
             }
             catch (Exception ex)
             {
@@ -33,25 +34,6 @@ namespace DBST.Hospital.DataAccess
             oDataTable = clsConnection.ExecuteStoreProcedure(psStoredProcedure, poParameters.ToArray());
 
             return oDataTable;
-        }
-
-        public DataTable GetProviderById(int piId)
-        {
-            DataTable oDataTable = new DataTable();
-            try
-            {
-                List<SqlParameter> loParameters = new List<SqlParameter>();
-                loParameters.Add(new SqlParameter("@Id", piId));
-
-
-                oDataTable = ExecuteStoreProcedure("spGetProviderById", loParameters);
-
-                return oDataTable;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
         }
     }
 }

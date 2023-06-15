@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace DBST.HospitalCls
 {
-    public class Doctor
+    public class Admin
     {
-        public static Task<ResponseScheme> GetAllDoctors()
+        public static Task<ResponseScheme> GetAllAdmins()
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsDoctor>.Instance.GetAllDoctors();
+                    return SingletonBase<clsAdmin>.Instance.GetAllAdmins();
                 });
 
             }
@@ -25,29 +25,13 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
-        public static Task<ResponseScheme> GetDoctorById(int piId)
+        public static Task<ResponseScheme> GetAdminByRFC(string psRFC)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsDoctor>.Instance.GetDoctorById(piId);
-                });
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public static Task<ResponseScheme> AddDoctor(DoctorScheme poScheme)
-        {
-            try
-            {
-                return Task.Run(() =>
-                {
-                    return SingletonBase<clsDoctor>.Instance.AddDoctor(poScheme);
+                    return SingletonBase<clsAdmin>.Instance.GetAdminByRFC(psRFC);
                 });
 
             }
@@ -57,13 +41,13 @@ namespace DBST.HospitalCls
             }
         }
 
-        public static Task<ResponseScheme> UpdateDoctor(DoctorUpdateScheme poScheme)
+        public static Task<ResponseScheme> AddAdmin(AdminScheme poScheme)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsDoctor>.Instance.UpdateDoctor(poScheme);
+                    return SingletonBase<clsAdmin>.Instance.AddAdmin(poScheme);
                 });
 
             }
@@ -73,13 +57,29 @@ namespace DBST.HospitalCls
             }
         }
 
-        public static Task<ResponseScheme> DeleteDoctor(string psRFC)
+        public static Task<ResponseScheme> UpdateAdmin(AdminUpdateScheme poScheme)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsDoctor>.Instance.DeleteDoctor(psRFC);
+                    return SingletonBase<clsAdmin>.Instance.UpdateAdmin(poScheme);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static Task<ResponseScheme> DeleteAdmin(string psRFC)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsAdmin>.Instance.DeleteAdmin(psRFC);
                 });
             }
             catch (Exception ex)

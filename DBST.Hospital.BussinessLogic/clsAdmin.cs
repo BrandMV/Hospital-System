@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace DBST.Hospital.BussinessLogic
 {
-    public class clsDoctor
+    public class clsAdmin
     {
-        public ResponseScheme GetAllDoctors()
+        public ResponseScheme GetAllAdmins()
         {
             ResponseScheme oResponse = new ResponseScheme();
 
             try
             {
-
-                DBST.Hospital.DataAccess.clsDoctor clsDoctor = new DataAccess.clsDoctor();
-                DataTable oDataTable = clsDoctor.GetAllDoctors();
+                DBST.Hospital.DataAccess.clsAdmin clsAdmin = new DataAccess.clsAdmin();
+                DataTable oDataTable = clsAdmin.GetAllAdmins();
 
                 if (oDataTable.Rows.Count > 0)
                 {
@@ -35,14 +34,14 @@ namespace DBST.Hospital.BussinessLogic
         }
 
 
-        public ResponseScheme GetDoctorById(int piId)
+        public ResponseScheme GetAdminByRFC(string psRFC)
         {
             ResponseScheme oResponse = new ResponseScheme();
 
             try
             {
-                DBST.Hospital.DataAccess.clsDoctor clsDoctor = new DataAccess.clsDoctor();
-                DataTable oDataTable = clsDoctor.GetDoctorById(piId);
+                DBST.Hospital.DataAccess.clsAdmin clsAdmin = new DataAccess.clsAdmin();
+                DataTable oDataTable = clsAdmin.GetAdminByRFC(psRFC);
 
                 if (oDataTable.Rows.Count > 0)
                 {
@@ -57,13 +56,13 @@ namespace DBST.Hospital.BussinessLogic
             return oResponse;
         }
 
-        public ResponseScheme AddDoctor(DoctorScheme poScheme)
+        public ResponseScheme AddAdmin(AdminScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                DBST.Hospital.DataAccess.clsDoctor clsDoctor = new DataAccess.clsDoctor();
-                DataTable oDataTable = clsDoctor.AddDoctor(poScheme);
+                DBST.Hospital.DataAccess.clsAdmin clsAdmin = new DataAccess.clsAdmin();
+                DataTable oDataTable = clsAdmin.AddAdmin(poScheme);
 
                 oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
             }
@@ -75,13 +74,13 @@ namespace DBST.Hospital.BussinessLogic
             return oResponse;
         }
 
-        public ResponseScheme UpdateDoctor(DoctorUpdateScheme poScheme)
+        public ResponseScheme UpdateAdmin(AdminUpdateScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                DBST.Hospital.DataAccess.clsDoctor clsDoctor = new DataAccess.clsDoctor();
-                DataTable oDataTable = clsDoctor.UpdateDoctor(poScheme);
+                DBST.Hospital.DataAccess.clsAdmin clsAdmin = new DataAccess.clsAdmin();
+                DataTable oDataTable = clsAdmin.UpdateAdmin(poScheme);
 
                 oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
             }
@@ -92,18 +91,18 @@ namespace DBST.Hospital.BussinessLogic
 
             return oResponse;
         }
-        public ResponseScheme DeleteDoctor(string psRFC)
+        public ResponseScheme DeleteAdmin(string psRFC)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                DBST.Hospital.DataAccess.clsDoctor clsDoctor = new DataAccess.clsDoctor();
-                DataTable oDataTable = clsDoctor.DeleteDoctor(psRFC);
+                DBST.Hospital.DataAccess.clsAdmin clsAdmin = new DataAccess.clsAdmin();
+                DataTable oDataTable = clsAdmin.DeleteAdmin(psRFC);
 
                 oResponse = new ResponseScheme()
                 {
                     StatusCode = System.Net.HttpStatusCode.OK,
-                    Message = "El Doctor se elimino correctamente"
+                    Message = "El administrador se elimino correctamente"
                 };
             }
             catch (Exception ex)

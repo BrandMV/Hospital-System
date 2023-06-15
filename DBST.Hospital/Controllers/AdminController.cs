@@ -12,38 +12,37 @@ using System.Web.Http.Cors;
 namespace DBST.Hospital.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
-    public class DoctorController : ApiController
+    public class AdminController : ApiController
     {
+        [HttpGet]
+        [Route("api/Admin/GetAllAdmins")]
+        public async Task<ResponseScheme> GetAllAdmins()
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+            try
+            {
+                oResponse = await Admin.GetAllAdmins();
+
+            }
+            catch (Exception ex)
+            {
+                oResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return oResponse;
+        }
 
         [HttpGet]
-        [Route("api/Doctor/GetAllDoctors")]
-        public async Task<ResponseScheme> GetAllDoctors()
+        [Route("api/Admin/GetAdminByRFC")]
+        public async Task<ResponseScheme> GetAdminByRFC(string psRFC)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Doctor.GetAllDoctors();
-
-            }
-            catch (Exception ex)
-            {
-                oResponse = new ResponseScheme()
-                {
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                    Message = ex.Message,
-                };
-            }
-            return oResponse;
-        }
-
-        [HttpGet]
-        [Route("api/Doctor/GetDoctorById")]
-        public async Task<ResponseScheme> GetDoctorById(int piId)
-        {
-            ResponseScheme oResponse = new ResponseScheme();
-            try
-            {
-                oResponse = await Doctor.GetDoctorById(piId);
+                oResponse = await Admin.GetAdminByRFC(psRFC);
             }
             catch (Exception ex)
             {
@@ -57,13 +56,13 @@ namespace DBST.Hospital.Controllers
         }
 
         [HttpPost]
-        [Route("api/Doctor/AddDoctor")]
-        public async Task<ResponseScheme> AddDoctor(DoctorScheme poScheme)
+        [Route("api/Admin/AddAdmin")]
+        public async Task<ResponseScheme> AddAdmin(AdminScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Doctor.AddDoctor(poScheme);
+                oResponse = await Admin.AddAdmin(poScheme);
             }
             catch (Exception ex)
             {
@@ -77,13 +76,13 @@ namespace DBST.Hospital.Controllers
         }
 
         [HttpPost]
-        [Route("api/Doctor/UpdateDoctor")]
-        public async Task<ResponseScheme> UpdateDoctor(DoctorUpdateScheme poScheme)
+        [Route("api/Admin/UpdateAdmin")]
+        public async Task<ResponseScheme> UpdateAdmin(AdminUpdateScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Doctor.UpdateDoctor(poScheme);
+                oResponse = await Admin.UpdateAdmin(poScheme);
             }
             catch (Exception ex)
             {
@@ -98,13 +97,13 @@ namespace DBST.Hospital.Controllers
 
 
         [HttpPost]
-        [Route("api/Doctor/DeleteDoctor")]
-        public async Task<ResponseScheme> DeleteDoctor(string psRFC)
+        [Route("api/Admin/DeleteAdmin")]
+        public async Task<ResponseScheme> DeleteAdmin(string psRFC)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Doctor.DeleteDoctor(psRFC);
+                oResponse = await Admin.DeleteAdmin(psRFC);
             }
             catch (Exception ex)
             {

@@ -10,7 +10,8 @@ namespace DBST.Hospital.Scheme
     {
         public int IdConsultorio { get; set; }
         public string CedulaProfesional { get; set; }
-        public string Contrasena { get; set; }
+        public string Password { get; set; }
+
 
 
     }

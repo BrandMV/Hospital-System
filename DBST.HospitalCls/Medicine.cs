@@ -56,6 +56,22 @@ namespace DBST.HospitalCls
             }
         }
 
+        public static Task<ResponseScheme> GetMedicineById(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsMedicine>.Instance.GetMedicineById(piId);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static Task<ResponseScheme> DeleteMedicine(int piId)
         {
             try

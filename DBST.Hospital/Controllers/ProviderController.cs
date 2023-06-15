@@ -35,5 +35,25 @@ namespace DBST.Hospital.Controllers
             }
             return oResponse;
         }
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("api/Provider/GetProviderById")]
+        public async Task<ResponseScheme> GetProviderById(int piId)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+            try
+            {
+                oResponse = await Provider.GetProviderById(piId);
+            }
+            catch (Exception ex)
+            {
+                oResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+
+            return oResponse;
+        }
     }
 }
