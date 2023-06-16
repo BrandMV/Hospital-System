@@ -28,6 +28,23 @@ namespace DBST.Hospital.DataAccess
                 throw new Exception(ex.Message);
             }
         }
+        public DataTable RecoverPassword(LoginScheme poScheme)
+        {
+            DataTable oDataTable = new DataTable();
+            try
+            {
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+                loParameters.Add(new SqlParameter("@LoginCred", poScheme.LoginCred));
+                loParameters.Add(new SqlParameter("@Password", poScheme.Password));
+                oDataTable = ExecuteStoreProcedure("spRecoverPassword", loParameters);
+
+                return oDataTable;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public DataTable ExecuteStoreProcedure(string psStoredProcedure, List<SqlParameter> poParameters)
         {

@@ -25,5 +25,21 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
+
+        public static Task<ResponseScheme> RecoverPassword(LoginScheme poScheme)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsLogin>.Instance.RecoverPassword(poScheme);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

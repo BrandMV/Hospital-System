@@ -62,6 +62,7 @@ namespace DBST.Hospital.BussinessLogic
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
+                poScheme.Password = Utilities.EncryptPassword(poScheme.Password);
                 DBST.Hospital.DataAccess.clsDoctor clsDoctor = new DataAccess.clsDoctor();
                 DataTable oDataTable = clsDoctor.AddDoctor(poScheme);
 

@@ -62,7 +62,7 @@ namespace DBST.Hospital.BussinessLogic
 
             try
             {
-
+                poScheme.Password = Utilities.EncryptPassword(poScheme.Password);
                 DBST.Hospital.DataAccess.clsPatient clsPatient = new DataAccess.clsPatient();
                 DataTable oDataTable = clsPatient.AddPatient(poScheme);
 

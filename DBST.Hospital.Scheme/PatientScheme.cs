@@ -13,7 +13,7 @@ namespace DBST.Hospital.Scheme
         public string Materno { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Email { get; set; }
-        public string Contrasena { get; set; }
+        public string Password { get; set; }
         public string Telefono { get; set; }
         #region Direccion
         public string Estado { get; set; }

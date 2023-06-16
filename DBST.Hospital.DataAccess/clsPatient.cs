@@ -60,7 +60,7 @@ namespace DBST.Hospital.DataAccess
                 loParameters.Add(new SqlParameter("@Materno", poPatient.Materno));
                 loParameters.Add(new SqlParameter("@FechaNacimiento", poPatient.FechaNacimiento));
                 loParameters.Add(new SqlParameter("@Email", poPatient.Email));
-                loParameters.Add(new SqlParameter("@Contrasena", poPatient.Contrasena));
+                loParameters.Add(new SqlParameter("@Contrasena", poPatient.Password));
                 loParameters.Add(new SqlParameter("@Telefono", poPatient.Telefono));
                 loParameters.Add(new SqlParameter("@Estado", poPatient.Estado));
                 loParameters.Add(new SqlParameter("@Colonia", poPatient.Colonia));
