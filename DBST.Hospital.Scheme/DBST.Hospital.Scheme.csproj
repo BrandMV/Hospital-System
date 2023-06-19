@@ -51,10 +51,12 @@
     <Compile Include="MedicineUpdateScheme.cs" />
     <Compile Include="PatientScheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProviderScheme.cs" />
     <Compile Include="ResponseScheme.cs" />
     <Compile Include="SpecialityDoctorScheme.cs" />
     <Compile Include="UpdateAppointmentScheme.cs" />
     <Compile Include="UpdatePatientScheme.cs" />
+    <Compile Include="UpdateProviderScheme.cs" />
     <Compile Include="WorkerScheme.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

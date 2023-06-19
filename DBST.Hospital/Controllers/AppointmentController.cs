@@ -56,12 +56,53 @@ namespace DBST.Hospital.Controllers
 
         [HttpPost]
         [Route("api/Appointment/DeleteAppointment")]
-        public async Task<ResponseScheme> DeleteAppointment(int piId)
+        public async Task<ResponseScheme> DeleteAppointment(int piId, int piIdPaciente)
         {
             ResponseScheme loResponse = new ResponseScheme();
             try
             {
-                loResponse = await Appointment.DeleteAppointment(piId);
+                loResponse = await Appointment.DeleteAppointment(piId, piIdPaciente);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
+
+        [HttpGet]
+        [Route("api/Appointment/ValidateAppointment")]
+        public async Task<ResponseScheme> ValidateAppointment(int piId, DateTime fecha, int isEdit)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Appointment.ValidateAppointment(piId, fecha, isEdit);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
+
+        [HttpGet]
+        [Route("api/Appointment/GetAvailableHours")]
+
+        public async Task<ResponseScheme> GetAvailableHours(string psDate, string psRFC, int piIdMedico)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Appointment.GetAvailableHours(psDate, psRFC, piIdMedico);
             }
             catch (Exception ex)
             {
@@ -102,6 +143,26 @@ namespace DBST.Hospital.Controllers
             try
             {
                 loResponse = await Appointment.GetAppointmentsByPatient(piId);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
+
+        [HttpGet]
+        [Route("api/Appointment/GetAppointmentById")]
+        public async Task<ResponseScheme> GetAppointmentById(int piId)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Appointment.GetAppointmentById(piId);
             }
             catch (Exception ex)
             {

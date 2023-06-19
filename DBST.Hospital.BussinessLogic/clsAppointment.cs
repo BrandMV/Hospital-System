@@ -42,6 +42,36 @@ namespace DBST.Hospital.BussinessLogic
             return oResponse;
         }
 
+        public ResponseScheme GetAvailableHours(string psDate, string psRFC, int piIdMedico)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+            try
+            {
+                DBST.Hospital.DataAccess.clsAppointment clsAppointment = new DataAccess.clsAppointment();
+                DataTable oDataTable = clsAppointment.GetAvailableHours(psDate, psRFC, piIdMedico);
+
+                if (oDataTable.Rows.Count > 0)
+                {
+                    oResponse = Utilities.GenerateResponse(true, oDataTable);
+                }
+                else
+                {
+                    oResponse = new ResponseScheme()
+                    {
+                        StatusCode = System.Net.HttpStatusCode.OK,
+                        Message = "No hay horas disponibles para esta fecha"
+                    };
+                }
+
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+        
         public ResponseScheme GetAppointmentsByPatient(int piId)
         {
             ResponseScheme oResponse = new ResponseScheme();
@@ -64,6 +94,47 @@ namespace DBST.Hospital.BussinessLogic
                         Message = "No hay citas"
                     };
                 }
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+
+        public ResponseScheme GetAppointmentById(int piId)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+                DBST.Hospital.DataAccess.clsAppointment clsAppointment = new DataAccess.clsAppointment();
+                DataTable oDataTable = clsAppointment.GetAppointmentById(piId);
+
+                if (oDataTable.Rows.Count > 0)
+                {
+                    oResponse = Utilities.GenerateResponse(true, oDataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+
+        public ResponseScheme ValidateAppointment(int piId, DateTime fecha, int isEdit)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+
+                DBST.Hospital.DataAccess.clsAppointment clsAppointment = new DataAccess.clsAppointment();
+                DataTable oDataTable = clsAppointment.ValidateAppointment(piId, fecha, isEdit);
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
             }
             catch (Exception ex)
             {
@@ -113,7 +184,7 @@ namespace DBST.Hospital.BussinessLogic
             return oResponse;
         }
 
-        public ResponseScheme DeleteAppointment(int piId)
+        public ResponseScheme DeleteAppointment(int piId, int piIdPaciente)
         {
             ResponseScheme oResponse = new ResponseScheme();
 
@@ -121,13 +192,9 @@ namespace DBST.Hospital.BussinessLogic
             {
 
                 DBST.Hospital.DataAccess.clsAppointment clsAppointment = new DataAccess.clsAppointment();
-                DataTable oDataTable = clsAppointment.DeleteAppointment(piId);
+                DataTable oDataTable = clsAppointment.DeleteAppointment(piId, piIdPaciente);
 
-                oResponse = new ResponseScheme()
-                {
-                    StatusCode = System.Net.HttpStatusCode.OK,
-                    Message = "La cita se elimino correctamente"
-                };
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
 
 
             }

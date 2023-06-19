@@ -11,7 +11,7 @@ namespace DBST.Hospital.DataAccess
 {
     public class clsAppointment
     {
-        
+
         public DataTable GetAppointments()
         {
             DataTable dt = new DataTable();
@@ -22,7 +22,7 @@ namespace DBST.Hospital.DataAccess
                 dt = ExecuteStoreProcedure("spGetAppointments", loParameters);
                 return dt;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -36,6 +36,23 @@ namespace DBST.Hospital.DataAccess
 
                 loParams.Add(new SqlParameter("@IdPatient", piId));
                 dt = ExecuteStoreProcedure("spGetAppointmentsByPatient", loParams);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable GetAppointmentById(int piId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                List<SqlParameter> loParams = new List<SqlParameter>();
+
+                loParams.Add(new SqlParameter("@Id", piId));
+                dt = ExecuteStoreProcedure("spGetAppointmenById", loParams);
                 return dt;
             }
             catch (Exception ex)
@@ -88,7 +105,7 @@ namespace DBST.Hospital.DataAccess
             }
         }
 
-        public DataTable DeleteAppointment(int piId)
+        public DataTable DeleteAppointment(int piId, int piIdPaciente)
         {
             DataTable dt = new DataTable();
             try
@@ -96,10 +113,53 @@ namespace DBST.Hospital.DataAccess
                 List<SqlParameter> loParams = new List<SqlParameter>();
 
                 loParams.Add(new SqlParameter("@IdCita", piId));
-                
+                loParams.Add(new SqlParameter("@IdPaciente", piIdPaciente));
+
                 dt = ExecuteStoreProcedure("spDeleteAppointment", loParams);
 
                 return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ValidateAppointment(int piId, DateTime fecha, int isEdit)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                List<SqlParameter> loParams = new List<SqlParameter>();
+
+                loParams.Add(new SqlParameter("@IdPaciente", piId));
+                loParams.Add(new SqlParameter("@FechaCita", fecha));
+                loParams.Add(new SqlParameter("@IsEdit", isEdit));
+
+                dt = ExecuteStoreProcedure("spValidateUserAppointment", loParams);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable GetAvailableHours(string psDate, string psRFC, int piIdMedico)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                List<SqlParameter> loParams = new List<SqlParameter>();
+                loParams.Add(new SqlParameter("@Fecha", psDate));
+                loParams.Add(new SqlParameter("@RFC", psRFC));
+                loParams.Add(new SqlParameter("@IdMedico", piIdMedico));
+
+                dt = ExecuteStoreProcedure("spGetAvailableHours", loParams);
+
+                return dt;
+
             }
             catch (Exception ex)
             {

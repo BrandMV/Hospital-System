@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="clsAdmin.cs" />
     <Compile Include="clsAppointment.cs" />
+    <Compile Include="clsBinnacle.cs" />
     <Compile Include="clsConnection.cs" />
     <Compile Include="clsDoctor.cs" />
     <Compile Include="clsLogin.cs" />

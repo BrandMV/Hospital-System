@@ -38,13 +38,28 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
-        public static Task<ResponseScheme> DeleteAppointment(int piId)
+        public static Task<ResponseScheme> DeleteAppointment(int piId, int piIdPaciente)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsAppointment>.Instance.DeleteAppointment(piId);
+                    return SingletonBase<clsAppointment>.Instance.DeleteAppointment(piId, piIdPaciente);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static Task<ResponseScheme> ValidateAppointment(int piId, DateTime fecha, int isEdit)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsAppointment>.Instance.ValidateAppointment(piId, fecha, isEdit);
                 });
             }
             catch (Exception ex)
@@ -75,6 +90,36 @@ namespace DBST.HospitalCls
                 return Task.Run(() =>
                 {
                     return SingletonBase<clsAppointment>.Instance.GetAppointmentsByPatient(piId);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static Task<ResponseScheme> GetAppointmentById(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsAppointment>.Instance.GetAppointmentById(piId);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static Task<ResponseScheme> GetAvailableHours(string psDate, string psRFC, int piIdMedico)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsAppointment>.Instance.GetAvailableHours(psDate, psRFC, piIdMedico);
                 });
             }
             catch (Exception ex)

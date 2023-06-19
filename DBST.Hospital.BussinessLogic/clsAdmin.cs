@@ -100,11 +100,7 @@ namespace DBST.Hospital.BussinessLogic
                 DBST.Hospital.DataAccess.clsAdmin clsAdmin = new DataAccess.clsAdmin();
                 DataTable oDataTable = clsAdmin.DeleteAdmin(psRFC);
 
-                oResponse = new ResponseScheme()
-                {
-                    StatusCode = System.Net.HttpStatusCode.OK,
-                    Message = "El administrador se elimino correctamente"
-                };
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
             }
             catch (Exception ex)
             {

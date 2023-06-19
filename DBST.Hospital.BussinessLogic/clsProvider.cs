@@ -63,5 +63,62 @@ namespace DBST.Hospital.BussinessLogic
 
             return oResponse;
         }
+
+        public ResponseScheme AddProvider(ProviderScheme poScheme)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+                DBST.Hospital.DataAccess.clsProvider clsProvider = new DataAccess.clsProvider();
+                DataTable oDataTable = clsProvider.AddProvider(poScheme);
+
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+
+        public ResponseScheme UpdateProvider(UpdateProviderScheme poScheme)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+                DBST.Hospital.DataAccess.clsProvider clsProvider = new DataAccess.clsProvider();
+                DataTable oDataTable = clsProvider.UpdateProvider(poScheme);
+
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+
+        public ResponseScheme DeleteProvider(int piId)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+                DBST.Hospital.DataAccess.clsProvider clsProvider = new DataAccess.clsProvider();
+                DataTable oDataTable = clsProvider.DeleteProvider(piId);
+
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
     }
 }

@@ -58,11 +58,7 @@ namespace DBST.Hospital.BusinessLogic
                 DBST.Hospital.DataAccess.clsMedicine clsMedicine = new DataAccess.clsMedicine();
                 DataTable oDataTable = clsMedicine.DeleteMedicine(piId);
 
-                oResponse = new ResponseScheme()
-                {
-                    StatusCode = System.Net.HttpStatusCode.OK,
-                    Message = "La medicina se elimino correctamente"
-                };
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
             }
             catch (Exception ex)
             {

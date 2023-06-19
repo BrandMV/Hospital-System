@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Appointment.cs" />
+    <Compile Include="Binnacle.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="Office.cs" />
     <Compile Include="Speciality.cs" />

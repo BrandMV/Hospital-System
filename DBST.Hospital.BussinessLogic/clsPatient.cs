@@ -105,11 +105,7 @@ namespace DBST.Hospital.BussinessLogic
                 DBST.Hospital.DataAccess.clsPatient clsPatient = new DataAccess.clsPatient();
                 DataTable oDataTable = clsPatient.DeletePatient(piId);
 
-                oResponse = new ResponseScheme()
-                {
-                    StatusCode = System.Net.HttpStatusCode.OK,
-                    Message = "El paciente se elimino correctamente"
-                };
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
             }
             catch (Exception ex)
             {

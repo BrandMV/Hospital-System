@@ -101,11 +101,7 @@ namespace DBST.Hospital.BussinessLogic
                 DBST.Hospital.DataAccess.clsDoctor clsDoctor = new DataAccess.clsDoctor();
                 DataTable oDataTable = clsDoctor.DeleteDoctor(psRFC);
 
-                oResponse = new ResponseScheme()
-                {
-                    StatusCode = System.Net.HttpStatusCode.OK,
-                    Message = "El Doctor se elimino correctamente"
-                };
+                oResponse = Utilities.GenerateResponseWithNoData(oDataTable);
             }
             catch (Exception ex)
             {

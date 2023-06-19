@@ -13,17 +13,16 @@ namespace DBST.Hospital.Controllers
 {
     [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
 
-    public class ProviderController : ApiController
+    public class BinnacleController : ApiController
     {
         [HttpGet]
-        [Route("api/Provider/GetProviders")]
-        public async Task<ResponseScheme> GetProviders()
+        [Route("api/Binnacle/getUserBinnacclea")]
+        public async Task<ResponseScheme> getUserBinnacclea(int piId)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Provider.GetProviders();
-
+                oResponse = await Binnacle.getUserBinnacclea(piId);
             }
             catch (Exception ex)
             {
@@ -35,35 +34,15 @@ namespace DBST.Hospital.Controllers
             }
             return oResponse;
         }
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/Provider/GetProviderById")]
-        public async Task<ResponseScheme> GetProviderById(int piId)
+
+        [HttpGet]
+        [Route("api/Binnacle/getUserBinnaccleInfo")]
+        public async Task<ResponseScheme> getUserBinnaccleInfo(int piIdBinnacle)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Provider.GetProviderById(piId);
-            }
-            catch (Exception ex)
-            {
-                oResponse = new ResponseScheme()
-                {
-                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
-                    Message = ex.Message,
-                };
-            }
-
-            return oResponse;
-        }
-
-        [HttpPost]
-        [Route("api/Provider/AddProvider")]
-        public async Task<ResponseScheme> AddProvider(ProviderScheme poScheme)
-        {
-            ResponseScheme oResponse = new ResponseScheme();
-            try
-            {
-                oResponse = await Provider.AddProvider(poScheme);
+                oResponse = await Binnacle.getUserBinnaccleInfo(piIdBinnacle);
             }
             catch (Exception ex)
             {
@@ -77,13 +56,13 @@ namespace DBST.Hospital.Controllers
         }
 
         [HttpPost]
-        [Route("api/Provider/UpdateProvider")]
-        public async Task<ResponseScheme> UpdateProvider(UpdateProviderScheme poScheme)
+        [Route("api/Binnacle/AddBinnacle")]
+        public async Task<ResponseScheme> AddBinnacle(BinnacleScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Provider.UpdateProvider(poScheme);
+                oResponse = await Binnacle.AddBinnacle(poScheme);
             }
             catch (Exception ex)
             {
@@ -97,13 +76,13 @@ namespace DBST.Hospital.Controllers
         }
 
         [HttpPost]
-        [Route("api/Provider/DeleteProvider")]
-        public async Task<ResponseScheme> DeleteProvider(int piId)
+        [Route("api/Binnacle/UpdateBinnacle")]
+        public async Task<ResponseScheme> UpdateBinnacle(BinnacleUpdateScheme poScheme)
         {
             ResponseScheme oResponse = new ResponseScheme();
             try
             {
-                oResponse = await Provider.DeleteProvider(piId);
+                oResponse = await Binnacle.UpdateBinnacle(poScheme);
             }
             catch (Exception ex)
             {

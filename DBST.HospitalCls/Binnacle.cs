@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace DBST.HospitalCls
 {
-    public class Provider
+    public class Binnacle
     {
-        public static Task<ResponseScheme> GetProviders()
+        public static Task<ResponseScheme> AddBinnacle(BinnacleScheme poScheme)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsProvider>.Instance.GetProviders();
+                    return SingletonBase<clsBinnacle>.Instance.AddBinnacle(poScheme);
                 });
 
             }
@@ -26,13 +26,13 @@ namespace DBST.HospitalCls
             }
         }
 
-        public static Task<ResponseScheme> GetProviderById(int piId)
+        public static Task<ResponseScheme> UpdateBinnacle(BinnacleUpdateScheme poScheme)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsProvider>.Instance.GetProviderById(piId);
+                    return SingletonBase<clsBinnacle>.Instance.UpdateBinnacle(poScheme);
                 });
 
             }
@@ -41,14 +41,13 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
-
-        public static Task<ResponseScheme> AddProvider(ProviderScheme poScheme)
+        public static Task<ResponseScheme> getUserBinnacclea(int piId)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsProvider>.Instance.AddProvider(poScheme);
+                    return SingletonBase<clsBinnacle>.Instance.getUserBinnacclea(piId);
                 });
 
             }
@@ -57,30 +56,13 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
-
-        public static Task<ResponseScheme> UpdateProvider(UpdateProviderScheme poScheme)
+        public static Task<ResponseScheme> getUserBinnaccleInfo(int piIdBinnacle)
         {
             try
             {
                 return Task.Run(() =>
                 {
-                    return SingletonBase<clsProvider>.Instance.UpdateProvider(poScheme);
-                });
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public static Task<ResponseScheme> DeleteProvider(int piId)
-        {
-            try
-            {
-                return Task.Run(() =>
-                {
-                    return SingletonBase<clsProvider>.Instance.DeleteProvider(piId);
+                    return SingletonBase<clsBinnacle>.Instance.getUserBinnaccleInfo(piIdBinnacle);
                 });
 
             }
