@@ -103,6 +103,37 @@ namespace DBST.Hospital.BussinessLogic
             return oResponse;
         }
 
+        public ResponseScheme GetAppointmentsByDoctor(string psRFC)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+
+                DBST.Hospital.DataAccess.clsAppointment clsAppointment = new DataAccess.clsAppointment();
+                DataTable oDataTable = clsAppointment.GetAppointmentsByDoctor(psRFC);
+
+                if (oDataTable.Rows.Count > 0)
+                {
+                    oResponse = Utilities.GenerateResponse(true, oDataTable);
+                }
+                else
+                {
+                    oResponse = new ResponseScheme()
+                    {
+                        StatusCode = System.Net.HttpStatusCode.OK,
+                        Message = "No hay citas"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
+
         public ResponseScheme GetAppointmentById(int piId)
         {
             ResponseScheme oResponse = new ResponseScheme();

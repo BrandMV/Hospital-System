@@ -98,6 +98,21 @@ namespace DBST.HospitalCls
             }
         }
 
+        public static Task<ResponseScheme> GetAppointmentsByDoctor(string psRFC)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsAppointment>.Instance.GetAppointmentsByDoctor(psRFC);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public static Task<ResponseScheme> GetAppointmentById(int piId)
         {
             try

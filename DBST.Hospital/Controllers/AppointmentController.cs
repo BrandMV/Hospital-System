@@ -156,6 +156,26 @@ namespace DBST.Hospital.Controllers
         }
 
         [HttpGet]
+        [Route("api/Appointment/GetAppointmentsByDoctor")]
+        public async Task<ResponseScheme> GetAppointmentsByDoctor(string psRFC)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Appointment.GetAppointmentsByDoctor(psRFC);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
+
+        [HttpGet]
         [Route("api/Appointment/GetAppointmentById")]
         public async Task<ResponseScheme> GetAppointmentById(int piId)
         {

@@ -60,6 +60,23 @@ namespace DBST.Hospital.DataAccess
                 throw new Exception(ex.Message);
             }
         }
+
+        public DataTable GetAppointmentsByDoctor(string psRFC)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                List<SqlParameter> loParams = new List<SqlParameter>();
+
+                loParams.Add(new SqlParameter("@RFC", psRFC));
+                dt = ExecuteStoreProcedure("spGetAppointmentsByDoctor", loParams);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public DataTable AddAppointment(AppointmentScheme poScheme)
         {
             DataTable dt = new DataTable();

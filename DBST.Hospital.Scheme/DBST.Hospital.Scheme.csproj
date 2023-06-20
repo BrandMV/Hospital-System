@@ -44,9 +44,12 @@
     <Compile Include="AdminScheme.cs" />
     <Compile Include="AdminUpdateScheme.cs" />
     <Compile Include="AppointmentScheme.cs" />
+    <Compile Include="BinnacleScheme.cs" />
+    <Compile Include="BinnacleUpdateScheme.cs" />
     <Compile Include="DoctorScheme.cs" />
     <Compile Include="DoctorUpdateScheme.cs" />
     <Compile Include="LoginScheme.cs" />
+    <Compile Include="MedicamentoLogScheme.cs" />
     <Compile Include="MedicineScheme.cs" />
     <Compile Include="MedicineUpdateScheme.cs" />
     <Compile Include="PatientScheme.cs" />

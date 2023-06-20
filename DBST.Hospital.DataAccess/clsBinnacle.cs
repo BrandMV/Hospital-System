@@ -18,9 +18,24 @@ namespace DBST.Hospital.DataAccess
             try
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
+                DataTable arrayTable = new DataTable();
+                arrayTable.Columns.Add("Id", typeof(int));
+                arrayTable.Columns.Add("idRegistroMedico", typeof(int));
+                arrayTable.Columns.Add("tiempoTratamiento", typeof(string));
+                arrayTable.Columns.Add("dosificacion", typeof(string));
 
-                //loParameters.Add(new SqlParameter("@Nombre", poPatient.Nombre));
-          
+                // Agregar los valores del array a la tabla
+                foreach (var item in poPatient.medicamentos)
+                {
+                    arrayTable.Rows.Add(item.id, item.idRegistroMedico, item.tiempoTratamiento, item.dosificacion);
+                }
+
+                loParameters.Add(new SqlParameter("@Diagnostico", poPatient.diagnostico));
+                loParameters.Add(new SqlParameter("@Medicinas", arrayTable));
+                loParameters.Add(new SqlParameter("@IdMedico", poPatient.idMedico));
+                loParameters.Add(new SqlParameter("@IdPaciente", poPatient.idPaciente));
+                loParameters.Add(new SqlParameter("@Fecha", poPatient.Fecha));
+
 
                 oDataTable = ExecuteStoreProcedure("spAddBinnacle", loParameters);
 
@@ -39,7 +54,13 @@ namespace DBST.Hospital.DataAccess
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
-                //loParameters.Add(new SqlParameter("@Nombre", poPatient.Nombre));
+                loParameters.Add(new SqlParameter("@idRegBitacora", poPatient.idRegistroBitacora));
+                loParameters.Add(new SqlParameter("@fecha", poPatient.fecha));
+                loParameters.Add(new SqlParameter("@idPaciente", poPatient.idPaciente));
+                loParameters.Add(new SqlParameter("@idMedico", poPatient.idMedico));
+                loParameters.Add(new SqlParameter("@idRegMedico", poPatient.idRegistroMedico));
+                loParameters.Add(new SqlParameter("@diagnostico", poPatient.diagnostico));
+                loParameters.Add(new SqlParameter("@fechaAsignacion", poPatient.fechaAsignacion));
 
 
                 oDataTable = ExecuteStoreProcedure("spUpdateBinnacle", loParameters);
@@ -77,7 +98,7 @@ namespace DBST.Hospital.DataAccess
             {
                 List<SqlParameter> loParameters = new List<SqlParameter>();
 
-                loParameters.Add(new SqlParameter("@IdPaciente", piIdBinnacle));
+                loParameters.Add(new SqlParameter("@IdBitacora", piIdBinnacle));
 
                 oDataTable = ExecuteStoreProcedure("spGetLogInfo", loParameters);
 
