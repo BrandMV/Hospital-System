@@ -90,6 +90,24 @@ namespace DBST.Hospital.DataAccess
                 throw new Exception(ex.Message);
             }
         }
+        public DataTable getTicket(int piId)
+        {
+            DataTable oDataTable = new DataTable();
+            try
+            {
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+
+                loParameters.Add(new SqlParameter("@IdBitacora", piId));
+
+                oDataTable = ExecuteStoreProcedure("spGetTicket", loParameters);
+
+                return oDataTable;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public DataTable getUserBinnaccleInfo(int piIdBinnacle)
         {
@@ -118,5 +136,7 @@ namespace DBST.Hospital.DataAccess
 
             return oDataTable;
         }
+
+      
     }
 }

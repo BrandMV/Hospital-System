@@ -36,6 +36,26 @@ namespace DBST.Hospital.Controllers
         }
 
         [HttpGet]
+        [Route("api/Binnacle/getTicket")]
+        public async Task<ResponseScheme> getTicket(int piId)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+            try
+            {
+                oResponse = await Binnacle.getTicket(piId);
+            }
+            catch (Exception ex)
+            {
+                oResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return oResponse;
+        }
+
+        [HttpGet]
         [Route("api/Binnacle/getUserBinnaccleInfo")]
         public async Task<ResponseScheme> getUserBinnaccleInfo(int piIdBinnacle)
         {

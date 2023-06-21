@@ -51,6 +51,7 @@
     <Compile Include="clsOffice.cs" />
     <Compile Include="clsPatient.cs" />
     <Compile Include="clsProvider.cs" />
+    <Compile Include="clsReceipts.cs" />
     <Compile Include="clsSpeciality.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

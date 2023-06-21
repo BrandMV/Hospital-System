@@ -69,6 +69,27 @@ namespace DBST.Hospital.BussinessLogic
 
             return oResponse;
         }
+        public ResponseScheme getTicket(int piId)
+        {
+            ResponseScheme oResponse = new ResponseScheme();
+
+            try
+            {
+                DBST.Hospital.DataAccess.clsBinnacle clsBinnacle = new DataAccess.clsBinnacle();
+                DataTable oDataTable = clsBinnacle.getTicket(piId);
+
+                if (oDataTable.Rows.Count > 0)
+                {
+                    oResponse = Utilities.GenerateResponse(true, oDataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                oResponse = Utilities.CreateException(ex);
+            }
+
+            return oResponse;
+        }
 
         public ResponseScheme getUserBinnaccleInfo(int piIdBinnacle)
         {

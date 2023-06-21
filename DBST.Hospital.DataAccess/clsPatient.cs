@@ -48,6 +48,25 @@ namespace DBST.Hospital.DataAccess
             }
         }
 
+        public DataTable GetPatientsByDoctor(int piId)
+        {
+            DataTable oDataTable = new DataTable();
+            try
+            {
+                List<SqlParameter> loParameters = new List<SqlParameter>();
+
+                loParameters.Add(new SqlParameter("@IdMedico", piId));
+
+                oDataTable = ExecuteStoreProcedure("spGetPatientsByDoctor", loParameters);
+
+                return oDataTable;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public DataTable AddPatient(PatientScheme poPatient)
         {
             DataTable oDataTable = new DataTable();

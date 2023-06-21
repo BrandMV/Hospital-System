@@ -56,6 +56,22 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
+
+        public static Task<ResponseScheme> getTicket(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsBinnacle>.Instance.getTicket(piId);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public static Task<ResponseScheme> getUserBinnaccleInfo(int piIdBinnacle)
         {
             try
