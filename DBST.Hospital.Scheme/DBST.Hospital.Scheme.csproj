@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddExtraMedicineScheme.cs" />
     <Compile Include="AdminScheme.cs" />
     <Compile Include="AdminUpdateScheme.cs" />
     <Compile Include="AppointmentScheme.cs" />

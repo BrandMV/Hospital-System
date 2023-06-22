@@ -24,5 +24,50 @@ namespace DBST.HospitalCls
                 throw new Exception(ex.Message);
             }
         }
+
+        public static Task<ResponseScheme> GetUserReceipts(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsReceipts>.Instance.GetUserReceipts(piId);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public static Task<ResponseScheme> GetRecetaInfo(int piId)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsReceipts>.Instance.GetRecetaInfo(piId);
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static Task<ResponseScheme> AddExtraMedicine(AddExtraMedicineScheme poScheme)
+        {
+            try
+            {
+                return Task.Run(() =>
+                {
+                    return SingletonBase<clsReceipts>.Instance.AddExtraMedicine(poScheme);
+                });
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

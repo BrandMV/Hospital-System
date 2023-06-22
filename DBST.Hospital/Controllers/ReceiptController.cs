@@ -34,5 +34,65 @@ namespace DBST.Hospital.Controllers
             }
             return loResponse;
         }
+
+        [HttpGet]
+        [Route("api/Receipt/GetUserReceipts")]
+        public async Task<ResponseScheme> GetUserReceipts(int piId)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Receipt.GetUserReceipts(piId);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
+
+        [HttpPost]
+        [Route("api/Receipt/AddExtraMedicine")]
+        public async Task<ResponseScheme> AddExtraMedicine(AddExtraMedicineScheme poScheme)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Receipt.AddExtraMedicine(poScheme);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
+
+        [HttpGet]
+        [Route("api/Receipt/GetRecetaInfo")]
+        public async Task<ResponseScheme> GetRecetaInfo(int piId)
+        {
+            ResponseScheme loResponse = new ResponseScheme();
+            try
+            {
+                loResponse = await Receipt.GetRecetaInfo(piId);
+            }
+            catch (Exception ex)
+            {
+                loResponse = new ResponseScheme()
+                {
+                    StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                    Message = ex.Message,
+                };
+            }
+            return loResponse;
+        }
     }
 }
