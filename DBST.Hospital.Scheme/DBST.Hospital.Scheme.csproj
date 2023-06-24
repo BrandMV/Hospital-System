@@ -53,6 +53,7 @@
     <Compile Include="MedicamentoLogScheme.cs" />
     <Compile Include="MedicineScheme.cs" />
     <Compile Include="MedicineUpdateScheme.cs" />
+    <Compile Include="OfficeScheme.cs" />
     <Compile Include="PatientScheme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProviderScheme.cs" />
